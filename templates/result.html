@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Result
+{% endblock %}
+
+{% block body %}
+
+
+
+<div class="alert alert-success" role="alert" style="margin-top:30px;">
+  <h4 class="alert-heading text-center" style="font-size:50px;">Result</h4>
+  <p>Aww yeah, you successfully fetched opinion of people related to <span class="alert-link">{{ keyword }}</span>.</p>
+  <hr>
+  </div>
+  
+  <div class="row">
+  
+  <div class="col">
+<div class="alert alert-success" role="alert">
+  <span class="alert-link">{{ neutral }}</span> % people have Positive attitude towards  <span class="alert-link">{{ keyword }}</span>.
+</div>
+  <div class="alert alert-secondary" role="alert">
+  <span class="alert-link">{{ positive }}</span> % people have Neutral attitude towards  <span class="alert-link">{{ keyword }}</span>.
+</div>
+<div class="alert alert-danger" role="alert">
+  <span class="alert-link">{{ negative }}</span> % people have Negative attitude towards  <span class="alert-link">{{ keyword }}</span>.
+</div>
+
+
+</div>
+<div class="col">
+
+
+<div class="alert alert-success" >
+	<p class="text-center">Accuracy = </p>
+	<p class="text-center"> 74.86%</p>
+				
+</div>
+
+</div>
+</div>
+
+<div class="form-group">
+            <button class="btn btn-primary"><a href="{{url_for('index')}}" style="color:white;">Back </a> </button>
+        </div>
+
+
+<div class="card-group">
+  <div class="card">
+    <img class="card-img-top" src="{{url_for('static',filename='positive.jpg')}}" alt="Card image cap"/>
+    <div class="card-body overflow-auto" style="overflow: scroll; height:150px;">
+      <h5 class="card-title">Tweets</h5>
+      {% for tweet in ptweets %}
+      		{% for i,j in tweet.items() %}
+                    <p class="card-text"> {{ tweet[i] }}</p>
+             {% endfor %}
+      {% endfor %}
+      
+     
+    </div>
+  </div>
+  <div class="card">
+    <img class="card-img-top" src="{{url_for('static',filename='negative.jpg')}}" alt="Card image cap">
+    <div class="card-body overflow-auto" style="overflow: scroll; height:30px;">
+      <h5 class="card-title">Tweets</h5>
+     {% for tweet in ntweets %}
+      		{% for i,j in tweet.items() %}
+                    <p class="card-text"> {{ tweet[i] }}</p>
+             {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="card">
+    <img class="card-img-top" src="{{url_for('static',filename='neutral.jpg')}}" alt="Card image cap">
+   <div class="card-body overflow-auto" style="overflow: scroll; height:30px;">
+      <h5 class="card-title">Tweets</h5>
+      {% for tweet in otweets %}
+      		{% for i,j in tweet.items() %}
+                    <p class="card-text"> {{ tweet[i] }}</p>
+             {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}
